@@ -1,0 +1,234 @@
+<html>
+<body>
+    <style> 
+    *{text-align: center;}
+
+
+        .depo{display: none;}
+        
+        .depo input{
+            display: none;
+            margin-left: 42%;
+           
+        }
+        .retirada{
+            display: none;
+        }
+        .retirada input{
+            display: none;
+            margin-left: 42%;
+        
+        }
+        .extrato{ display: none;}
+
+        .p{
+            display: none;
+            font-size: 10px;
+        }
+       .simula{
+        display: none;
+        text-align: center;
+        
+       }
+       .simula input{
+        margin-left: 42%;
+        
+       }
+       .valor{display: none;}
+       .vezes{display: none;}
+       .p{display: none;}
+       .btn3{display: none; margin-left: 47%;}
+    </style>
+<h2>Bem vindo ao nosso Projeto Bank!</h2>
+<p>Informe seu nome e sua conta para prosseguir.</p>
+
+
+<div class="cliente">
+    <input  class="name" type="text" placeholder="Seu nome...">
+    <input  class="login" type="number" placeholder="Sua conta...">
+    <button onclick="cliente()">Entrar</button>
+    <p class="client"></p>
+    <p class="client2"></p>
+</div>
+
+    <div class="depo">
+<input   class="inp" type="number" placeholder="Valor do Depósito...">
+<button class="btn" onclick="deposito()">Depósito</button>
+<p class="demo"></p>
+</div>
+
+<div class="retirada">
+    <input class="inp2" type="number" placeholder="Valor do saque...">
+    <button class="btn2" onclick="saque()">Saque</button>
+    <p class="demo2"></p>
+
+</div>
+
+
+<div class="extrato">
+    <button onclick="extrato()">Extrato</button>
+    <p class="ext"></p>
+</div>
+
+
+<div class="simula">
+    <button onclick="emprestimo()">Simule seu financiamento agora!*</button>
+    <input  class="valor" type="number" placeholder="Valor total">
+    <input class="vezes" type="number" placeholder="Em quantas vezes?">
+    <button class="btn3" onclick="enviar()">Simular</button>
+    <p  class="emp"></p>
+    <p class="p">*a cada parcela se acrescenta um juros de 3%, consulte condições especiais <a href="#">aqui</a> ou entre em contato conosco!</p>
+
+</div>
+
+<script>
+ 
+ 
+var cliente = function(){
+    var cadastro = {
+        nome: "Jonas",
+        conta: "555",
+        cidade: "Ijuí - Rio Grande do Sul",
+        contato: "55-9999-9999"
+    }
+
+
+
+    var cliente = document.querySelector('.name').value;
+    var login = document.querySelector('.login').value;
+
+    
+    var client = document.querySelector('.client');
+    var client2 = document.querySelector('.client2')
+   
+   /* if(cliente != ""){client.innerHTML = ` Olá, ${cliente.toUpperCase()}, seja bem vindo ao nosso banco! </br> Qual transação deseja fazer hoje?`  }*/
+    if(cliente != cadastro.nome){client.innerHTML = "Nome da conta errado!"}
+    if(login != cadastro.conta){client2.innerHTML = "Número de conta inexistente."}
+    if(cliente == cadastro.nome){client.innerHTML = "";}
+    if(login == cadastro.conta){client2.innerHTML = "";}
+
+
+    if(cliente == cadastro.nome && login == cadastro.conta){ client.innerHTML = `Bem vindo ${cadastro.nome} </br> Seus dados estão abaixo: 
+    </br> Sua conta: ${cadastro.conta}
+    </br> Sua cidade: ${cadastro.cidade}
+    </br> Seu contato: ${cadastro.contato}`}
+    /*if(cliente == ""){client.innerHTML = `Por favor, insira um nome.`}
+    if(login == ""){client2.innerHTML = "Por favor, insira uma conta."}
+    if(login != ""){client2.innerHTML = ""} */
+
+
+    if(cliente == cadastro.nome && login == cadastro.conta){document.querySelector('.depo').style.display = "block"}
+    if(cliente == cadastro.nome && login == cadastro.conta){document.querySelector('.retirada').style.display = "block"}
+    if(cliente == cadastro.nome && login == cadastro.conta){document.querySelector('.extrato').style.display = "block"}
+    if(cliente == cadastro.nome && login == cadastro.conta){document.querySelector('.simula').style.display = "block"}
+
+    if(cliente != cadastro.nome || login != cadastro.conta){document.querySelector('.depo').style.display = "none"}
+    if(cliente != cadastro.nome || login != cadastro.conta){document.querySelector('.retirada').style.display = "none"}
+    if(cliente != cadastro.nome || login != cadastro.conta){document.querySelector('.extrato').style.display = "none"}
+    if(cliente != cadastro.nome || login != cadastro.conta){document.querySelector('.simula').style.display = "none"}
+
+
+}
+
+var saldo = 2000;
+
+
+var deposito = function(){
+   
+    var inp = document.querySelector('.inp').value;
+    
+    var demo = document.querySelector('.demo');
+    demo.innerHTML = "";   
+
+    if(inp == ""){demo.innerHTML = "Por favor, digite o valor a ser depositado..."}
+    if(inp == ""){document.querySelector('.inp').style.display = "block"}
+
+        
+   
+
+  if(inp != ""){demo.innerHTML = `Depósito efetuado no valor de R$ ${inp} 
+                </br> Saldo de R$ ${saldo += parseInt(inp) }`}
+  
+}
+
+
+var saque = function(){
+    
+    var inp2 = document.querySelector('.inp2').value;
+    var demo2 = document.querySelector('.demo2')
+    demo2.innerHTML = "";
+
+    if(inp2 == ""){demo2.innerHTML = "Por favor, digite um valor a ser sacado..."}
+    if(inp2 == ""){document.querySelector('.inp2').style.display = "block"}
+
+
+
+    if(inp2 != ""){demo2.innerHTML = `Saque efetuado no valor de R$ ${inp2}
+                        </br> Saldo de R$ ${saldo -= parseInt(inp2)}` }
+    
+}
+
+var extrato = function(){
+    var ext = document.querySelector('.ext');
+    var x = document.querySelector('.inp').value;
+    var y = document.querySelector('.inp2').value;
+    parseInt(x)
+    parseInt(y)
+
+    var saqefetuado = parseInt(x);  
+    var depefetuado = parseInt(y) ;
+
+
+    saqefetuado += saqefetuado
+    depefetuado += depefetuado
+
+
+    ext.innerHTML = `
+    Olá, veja seu extrato abaixo: 
+    </br> Seus depósitos: R$ ${saqefetuado}
+    </br> Seus saques: R$ ${depefetuado}
+    `
+}
+
+var emprestimo = function(){
+    var p = document.querySelector('.p')
+    var valor = document.querySelector('.valor').value;
+    var vezes = document.querySelector('.vezes').value;
+    
+    if(valor == ""){document.querySelector('.btn3').style.display = "block"}
+    if(valor == ""){document.querySelector('.valor').style.display = "block"}
+    if(vezes == ""){document.querySelector('.vezes').style.display = "block"}
+    if(valor == ""){p.style.display = "block"}
+
+    
+
+}
+
+var enviar = function(){
+    var p = document.querySelector('.p')
+    var valor = document.querySelector('.valor').value;
+    var vezes = document.querySelector('.vezes').value;
+    var porcentagem = 0.03;
+   
+    var porc = valor * porcentagem
+    var resultado = parseInt(valor) + vezes * porc;
+    
+    
+    var resultado2 = parseInt(valor) / resultado
+    var final = resultado / vezes;
+    var resul = document.querySelector('.emp');
+    
+    
+    resul.innerHTML = `
+    Valor total a ser financiado R$ ${resultado} 
+    </br> Valor da parcela: R$ ${final}
+    ` ;
+
+
+
+
+}
+
+</script>
+</body>
+</html>
